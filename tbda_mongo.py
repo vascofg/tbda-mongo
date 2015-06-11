@@ -13,8 +13,8 @@ on_heroku = 'DYNO' in os.environ
 # connect with mongo (heroku)
 if (on_heroku):
     client = MongoClient(
-        host="mongodb://tbda_vdm:vdm_mongo_1234@candidate.11.mongolayer.com:11069,candidate.16.mongolayer.com:11090/app37716760")
-    db = client.app37716760
+        host="mongodb://tbda_vdm:vdm_mongo_1234@ds043942.mongolab.com:43942/heroku_646gdt3n")
+    db = client.heroku_646gdt3n
 else:
     client = MongoClient()
     db = client.dba
