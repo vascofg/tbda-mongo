@@ -61,7 +61,7 @@ def index():
 
         doentes = globals()['doentes'].aggregate([
             {'$unwind': '$consultas'},
-            {'$match': {'consultas.codm': 2}},
+            {'$match': {'consultas.codm': medico['codm']}},
             {'$project': {'nome': True, 'consultas.situacao': True, 'consultas.hora': True, 'consultas.nagenda': True,
                           'consultas.codm': True}},
             {'$group': {'_id': '$_id', 'nome': {'$first': '$nome'}, 'consultas': {'$push': '$consultas'}}}])
@@ -75,7 +75,8 @@ def index():
                 for itemAgenda in agenda:
                     if itemAgenda['nagenda'] == consulta['nagenda']:
                         consulta['dia'] = itemAgenda['dia']
-                        break
+                        break		
+                del consulta['nagenda']
 
     return template('page', rows=medicos,
                     header="b) Relatório de atividade clínica", bodyTemplate="make_table")
