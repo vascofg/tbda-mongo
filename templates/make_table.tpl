@@ -1,3 +1,4 @@
+%if len(rows)>0:
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
@@ -28,3 +29,6 @@
     %end
     </tbody>
 </table>
+%else:
+<h3>NO DATA!</h3>
+%end
